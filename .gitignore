@@ -1,0 +1,10 @@
+node_modules
+vendor
+config/active
+.env
+*.sql
+*.gz
+*.sql.gz
+htb-outline.md
+config/staging/devel.*
+tst.php

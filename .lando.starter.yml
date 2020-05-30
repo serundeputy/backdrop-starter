@@ -1,0 +1,44 @@
+name: NEW_PROJECT
+recipe: backdrop
+config:
+  webroot: web
+  via: nginx
+  database: mariadb:10.3
+  php: 7.3
+  backdrush: 1.x-1.x
+  xdebug: true
+
+env_file:
+  - .env
+services:
+  appserver:
+    run_as_root:
+      - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+tooling:
+  drush:
+    service: appserver
+    cmd: drush --root=/app/web --uri=https://NEW_PROJECT.lndo.site
+  yarn:
+    service: node
+    cmd: yarn
+  lighthouse:
+    service: node
+    cmd: /app/node_modules/.bin/lighthouse
+  envoy:
+    service: appserver
+  pull:
+    service: appserver
+    description: Pull and import the database and files from production.
+    cmd:
+      - appserver: envoy run pull
+      - database: /helpers/sql-import.sh db.sql
+      - appserver: rm db.sql
+      - appserver: rm -rf /app/web/files
+      - appserver: tar xvzf f.tgz -C /app/web
+      - appserver: rm f.tgz
+  deploy:
+    service: appserver
+    description: Deploy to production
+    cmd:
+      - appserver: envoy run deploy --branch=master
