@@ -11,11 +11,21 @@ You'll need [lando](https://github.com/lando/lando) to make use of this repo.
 
 * `.example.env`
   * template w/ vars for deploys and pulls
+* `.gitignore`
+  * a reasonable gitignore; ignoring vendor, node_modules, and sql files.
 * `lando.yml`
   * `drush` set up
   * `deploy` set up
   * `pull` set up
   * `web` root
+* `composer.json`
+  * `laravel/envoy` for deploys and pulls
+* `Envoy.blade.php`
+  * Configured for `lando pull` and `lando deploy`
+* `README.md`
+  * How to use docs
+* `settings.local.php`
+  * Turn cacheing off for dev
 
 ## Use the Backdrop Starter State
 
@@ -34,7 +44,6 @@ For example in `vim` this would replace `NEW_PROJECT` with `gff`.
 ```
 :%s/NEW_PROJECT/gff/g
 ```
-
 
 Start up the project:
 
