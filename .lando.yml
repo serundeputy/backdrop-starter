@@ -10,6 +10,7 @@ config:
 
 env_file:
   - .env
+
 services:
   appserver:
     run_as_root:
