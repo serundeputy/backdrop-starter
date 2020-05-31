@@ -14,6 +14,8 @@ services:
   appserver:
     run_as_root:
       - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+    run:
+      - composer install
 
 tooling:
   drush:
