@@ -29,7 +29,11 @@ You'll need [lando](https://github.com/lando/lando) to make use of this repo.
 
 ## Use the Backdrop Starter State
 
-After cloning down this repo:
+Clone down this repo:
+
+```bash
+git clone git@github.com:serundeputy/backdrop-starter.git NEW_PROJECT
+```
 
 Move the example env file and fill out the vars to work with your stagint/production
 server(s)
